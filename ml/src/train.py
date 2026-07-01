@@ -74,3 +74,10 @@ for epoch in range(EPOCHS):
         f"Train Acc: {train_acc:.4f} "
         f"Val Acc: {val_acc:.4f}"
     )
+
+    if val_acc > best_val_acc:
+        best_val_acc = val_acc
+        torch.save({"model_state_dict": model.state_dict(), "classes": classes}, MODEL_PATH)
+        print(f"  -> Saved best model (val_acc={val_acc:.4f})")
+
+print(f"\nTraining complete. Best val acc: {best_val_acc:.4f}")
