@@ -1,0 +1,31 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.Python
+
+# Data is large and not tracked; keep folder structure via .gitkeep
+ml/data/raw/*
+ml/data/processed/*
+ml/data/splits/*
+!ml/data/raw/.gitkeep
+!ml/data/processed/.gitkeep
+!ml/data/splits/.gitkeep
+
+# Trained model weights (large)
+ml/models/*.pth
+ml/models/*.pt
+
+# Prediction logs
+backend/logs/
+*.log
+
+# Node / frontend
+node_modules/
+frontend/react-app/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
