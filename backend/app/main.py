@@ -15,3 +15,8 @@ app.add_middleware(
 )
 
 model, classes = load_model()
+
+
+@app.get("/")
+def root():
+    return {"message": "Smart Waste Classifier API is running", "classes": classes}
