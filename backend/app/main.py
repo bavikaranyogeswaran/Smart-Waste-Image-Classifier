@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from model_loader import load_model
+from predict import predict_image
+
 app = FastAPI(title="Smart Waste Classifier API")
 
 app.add_middleware(
@@ -10,3 +13,5 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+model, classes = load_model()

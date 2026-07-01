@@ -1,2 +1,2 @@
 python-interpreter = "venv/Scripts/python.exe"
-search-path = ["ml/src"]
+search-path = ["ml/src", "backend/app"]
