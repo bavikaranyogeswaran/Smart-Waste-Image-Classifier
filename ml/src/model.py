@@ -10,4 +10,7 @@ def build_model(num_classes):
     weights = models.ResNet18_Weights.DEFAULT
     model = models.resnet18(weights=weights)
 
+    for param in model.parameters():
+        param.requires_grad = False
+
     return model
