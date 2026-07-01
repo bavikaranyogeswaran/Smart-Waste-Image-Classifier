@@ -26,3 +26,28 @@ print(f"Classes: {classes}")
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.fc.parameters(), lr=LR)
+
+best_val_acc = 0.0
+
+for epoch in range(EPOCHS):
+    model.train()
+    train_loss    = 0.0
+    train_correct = 0
+    train_total   = 0
+
+    for images, labels in train_loader:
+        images = images.to(device)
+        labels = labels.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        train_loss += loss.item()
+        _, predicted = torch.max(outputs, 1)
+        train_total   += labels.size(0)
+        train_correct += (predicted == labels).sum().item()
+
+    train_acc = train_correct / train_total
