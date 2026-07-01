@@ -51,3 +51,26 @@ for epoch in range(EPOCHS):
         train_correct += (predicted == labels).sum().item()
 
     train_acc = train_correct / train_total
+
+    model.eval()
+    val_correct = 0
+    val_total   = 0
+
+    with torch.no_grad():
+        for images, labels in val_loader:
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outputs = model(images)
+            _, predicted = torch.max(outputs, 1)
+            val_total   += labels.size(0)
+            val_correct += (predicted == labels).sum().item()
+
+    val_acc = val_correct / val_total
+
+    print(
+        f"Epoch [{epoch+1}/{EPOCHS}] "
+        f"Loss: {train_loss/len(train_loader):.4f} "
+        f"Train Acc: {train_acc:.4f} "
+        f"Val Acc: {val_acc:.4f}"
+    )
