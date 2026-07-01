@@ -2,7 +2,7 @@
 
 Placeholder created in Step 1. Implemented in Step 5.
 """
-from torchvision import transforms
+from torchvision import datasets, transforms
 
 train_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -24,3 +24,20 @@ eval_transforms = transforms.Compose([
         std=[0.229, 0.224, 0.225]
     )
 ])
+
+
+def get_dataloaders(data_dir, batch_size=32):
+    train_dataset = datasets.ImageFolder(
+        root=f"{data_dir}/train",
+        transform=train_transforms
+    )
+
+    val_dataset = datasets.ImageFolder(
+        root=f"{data_dir}/val",
+        transform=eval_transforms
+    )
+
+    test_dataset = datasets.ImageFolder(
+        root=f"{data_dir}/test",
+        transform=eval_transforms
+    )
