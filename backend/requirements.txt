@@ -1,0 +1,11 @@
+fastapi==0.136.1
+uvicorn==0.47.0
+python-multipart==0.0.32
+pillow==12.2.0
+numpy==2.4.4
+
+# torch/torchvision are installed from the CPU wheel index in the Dockerfile
+# (--extra-index-url https://download.pytorch.org/whl/cpu) to avoid pulling the
+# multi-GB CUDA build. The +cpu local version tag matches those wheels.
+torch==2.6.0
+torchvision==0.21.0

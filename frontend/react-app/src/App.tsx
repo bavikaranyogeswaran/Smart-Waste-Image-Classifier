@@ -77,7 +77,7 @@ function App() {
       const formData = new FormData()
       formData.append('file', file)
       const response = await axios.post<PredictionResult>(
-        'http://127.0.0.1:8000/predict',
+        `${import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'}/predict`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )

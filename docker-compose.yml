@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    image: smart-waste-backend
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend/react-app
+      args:
+        # Browser talks to the backend on the host, so keep this pointed at
+        # the published backend port (override for a deployed environment).
+        VITE_API_URL: http://127.0.0.1:8000
+    image: smart-waste-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
