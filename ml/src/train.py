@@ -3,6 +3,8 @@
 Placeholder created in Step 1. Implemented in Step 7.
 """
 import torch
+import torch.nn as nn
+import torch.optim as optim
 
 from dataset import get_dataloaders
 from model import build_model
@@ -21,3 +23,6 @@ train_loader, val_loader, test_loader, classes = get_dataloaders(DATA_DIR, BATCH
 model = build_model(num_classes=len(classes))
 model = model.to(device)
 print(f"Classes: {classes}")
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.fc.parameters(), lr=LR)
