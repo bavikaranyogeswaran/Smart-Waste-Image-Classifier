@@ -3,6 +3,7 @@
 Placeholder created in Step 1. Implemented in Step 5.
 """
 from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
 
 train_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -41,3 +42,9 @@ def get_dataloaders(data_dir, batch_size=32):
         root=f"{data_dir}/test",
         transform=eval_transforms
     )
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False)
+    test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False)
+
+    return train_loader, val_loader, test_loader, train_dataset.classes
