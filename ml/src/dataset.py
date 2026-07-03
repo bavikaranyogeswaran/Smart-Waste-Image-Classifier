@@ -1,6 +1,5 @@
 """PyTorch DataLoaders and image transforms (ImageFolder based).
 
-Placeholder created in Step 1. Implemented in Step 5.
 """
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
